@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("GrafikOlustur", "Home")',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['geochart'],
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+        });
+
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Şehir Adı');
+            data.addColumn('number', 'Suç Sayısı');
+            var dataArray = [];
+
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.CityName, obj.CriminalCount]);
+            });
+            data.addRows(dataArray);
+
+            var options = {
+                sizeAxis: { minValue: 0, maxValue: 100 },
+                region: 'TR',
+                resolution: 'provinces',
+                colorAxis: { colors: ['#e31b23'] },
+                defaultColor: '#f5f5f5',
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+            chart.draw(data, options);
+        }
+
+        //vizyonda çalışan ajax kodum
+        //$.ajax({
+        //    type: "POST",
+        //    dataType: "json",
+        //    contentType: "application/json",
+        //    url: '@Url.Action("EmailGetir", "Home")?email=' + email + '',
+        //    success: function (result) {
+        //        //alert(result);
+        //        $.each(result, function (i, obj) {
+        //            //alert("1");
+        //            alert([obj.Email]);
+        //        });
+        //        }
+        //});
+    </script>
+</head>
+
+
+<body>
+
+    <div class="w3-container w3-metro-blue">
+        <h3>NORTHWND</h3>
+        <p>NORTHWND is a free database example. This database is full of data, users are no longer needs to fill data their databases.</p>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><div id="regions_div" style="width: 900px; height: 500px;"></div></td>
+            </tr>
+            <tr>
+                <th style="font-size:30px; text-align:center">Kriminal Vaka Grafiği</th>
+            </tr>
+        </table>
+
+    </div>
+
+
+</body>
+</html>
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/Employee.js"></script>
+    <script src="~/Scripts/actionlinkfill.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fillActionLinks();
+        })
+
+    </script>
+
+}

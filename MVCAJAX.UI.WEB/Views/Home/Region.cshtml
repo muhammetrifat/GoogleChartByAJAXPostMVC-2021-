@@ -1,0 +1,29 @@
+﻿<html>
+<head>
+    <title>AJAX</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <table class="table table-bordered" id="regionstabel1" style="margin-top:3%"></table>
+    </div>
+
+
+
+</body>
+
+</html>
+
+@section scripts{
+    <script src="~/Scripts/Employee.js"></script>
+    <script src="~/Scripts/actionlinkfill.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fillActionLinks();
+            RegionListele();
+        })
+
+    </script>
+
+}

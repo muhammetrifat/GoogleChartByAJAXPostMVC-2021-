@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+    <title>AJAX</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <table class="table table-bordered" id="categorytabel1" style="margin-top:3%"></table>
+
+        @*<table class="table table-bordered">
+                <tr>
+                    <td align="center"><button id="but1" onclick="EmployeeListele()" class="btn btn-primary" style="width:60%">Çalışanlar Listesi</button></td>
+                    <td align="center"><button id="but2" onclick="CustomerListele()" class="btn btn-success" style="width:60%">Müşteriler Listesi</button></td>
+                </tr>
+            </table>*@
+    </div>
+
+
+
+</body>
+
+</html>
+
+@section scripts{
+    <script src="~/Scripts/Employee.js"></script>
+    <script src="~/Scripts/actionlinkfill.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fillActionLinks();
+            CategoryListele();
+        })
+    </script>
+
+
+}
